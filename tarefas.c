@@ -146,10 +146,20 @@ ERROS carregar(Tarefa tarefas[], int *pos){
 
 }
 
-ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos, char nome_arquivo[]) {
+ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos) {
+    char nome_arquivo[50];
+    char txt[] = ".txt";
+    printf("Digite o nome do arquivo para exportar: ");
+    clearBuffer();
+    fgets(nome_arquivo, 50, stdin);
+  
+    nome_arquivo[strcspn(nome_arquivo, "\n")] = '\0';
+  
+    strcat(nome_arquivo, txt);
+  
     FILE *f = fopen(nome_arquivo, "w");
     if (f == NULL)
-        return ABRIR;
+        return ABRIR; 
 
     for (int i = 0; i < *pos; i++) {
         fprintf(f, "Prioridade: %d\n", tarefas[i].prioridade);
@@ -160,9 +170,11 @@ ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos, char nome_arquivo[
 
     if (fclose(f) != 0)
         return FECHAR;
-
+    printf("Arquivo exportado com sucesso!!\n");
     return OK;
 }
+
+
 
 void clearBuffer(){
     int c;

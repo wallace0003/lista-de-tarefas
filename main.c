@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "tarefas.h"
+#include <string.h>
 
 int main(){
-    funcao fs[] = {criar, deletar, listar, salvar, carregar, exportar_tarefas_para_texto};
+    funcao fs[] = {criar, deletar, listar, salvar, carregar,exportar_tarefas_para_texto};
 
     Tarefa tarefas[TOTAL];
     int pos;
@@ -25,21 +26,16 @@ int main(){
         if(opcao > 3)
             printf("Opcao invalida\n");
         else if(opcao >= 0) {
-            if (opcao == 2) {
-                fs[opcao](tarefas, &pos);
-            } 
-              else if(opcao == 4){
-                char nome_arquivo[50];
-                printf("Digite o nome do arquivo para exportar: ");
-                clearBuffer();
-                fgets(nome_arquivo, 50, stdin);
-                ERROS erro = fs[opcao](tarefas, &pos, nome_arquivo);
-                
-              }
-              
-            else {
-                fs[opcao](tarefas, &pos);
-            }
+          if (opcao == 2) {
+              fs[opcao](tarefas, &pos);
+          } 
+          else if(opcao == 3){
+              exportar_tarefas_para_texto(tarefas, &pos);
+          }
+            
+          else {
+              fs[opcao](tarefas, &pos);
+          }
         } else {
             printf("Sair...\n");
         }
