@@ -12,3 +12,5 @@ Como o projeto funciona:
   0 - sair: O programa exibe a mensagem "saindo..." e é encerrado.
 
 
+
+
