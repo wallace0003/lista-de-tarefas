@@ -3,6 +3,7 @@
 Este projeto foi concebido para atender às necessidades de usuários ocupados que buscam uma maneira eficiente de registrar suas tarefas diárias, garantindo que nada seja esquecido.
 
 Como o projeto funciona:
+  
   1 - Função de criar tarefa: É solicitado para o usuário digitar a prioridade da tarefa, categoria e descrição.
   
   2 - Função de deletar tarefas:É solicitado para o usuário digitar a tarefa que ele deseja deletar, caso esta tarefa exista ela será deletada, caso contrário é exibido a mensagem "Tarefa não encontrada". 
