@@ -3,7 +3,9 @@
 #include <string.h>
 
 int main(){
+
     funcao fs[] = {criar, deletar, listar, exportar_tarefas_txt, salvar, carregar};
+
 
     Tarefa tarefas[TOTAL];
     int pos;
