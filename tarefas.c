@@ -2,6 +2,8 @@
 #include <string.h>
 #include "tarefas.h"
 
+
+
 ERROS criar(Tarefa tarefas[], int *pos){
     if(*pos >= TOTAL)
         return MAX_TAREFA;
@@ -66,7 +68,7 @@ ERROS listar(Tarefa tarefas[], int *pos) {
 
     
     printf("Digite a categoria que deseja listar (deixe em branco para exibir todas): ");
-  clearBuffer(); 
+    clearBuffer(); 
     fgets(categoria, 100, stdin);
 
     
@@ -171,10 +173,40 @@ ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos) {
     if (fclose(f) != 0)
         return FECHAR;
     printf("Arquivo exportado com sucesso!!\n");
+
     return OK;
 }
 
+int verificErros(ERROS *erro){
+    switch (*erro){
+        case MAX_TAREFA:
+            printf("\nNúmero máximo de tarefas alcançado.\n");
+            break;
+        
+        case SEM_TAREFAS:
+            printf("\nNão foram encontradas tarefas salvas.\n");
+            break;
 
+        case NAO_ENCONTRADO:
+            printf("\nNenhuma tarefa encontrada.\n");
+            break;
+
+        case ABRIR:
+            printf("\nErro ao abrir o arquivo de tarefas.\n");
+            break;
+        
+        case FECHAR:
+            printf("\nErro ao fechar o arquivo de tarefas.\n");
+            break;
+        
+        case ESCREVER:
+            printf("\nErro ao escrever no arquivo de tarefas.\n");
+            break;
+
+        case LER:
+            printf("\nErro ao ler o arquivo de tarefas.\n");
+    }
+}
 
 void clearBuffer(){
     int c;

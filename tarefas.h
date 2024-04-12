@@ -21,6 +21,6 @@ ERROS carregar(Tarefa tarefas[], int *pos);
 
 ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos);
 
-
+int verificErros (ERROS *erro);
 
 void clearBuffer();
