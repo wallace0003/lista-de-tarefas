@@ -112,12 +112,12 @@ ERROS salvar(Tarefa tarefas[], int *pos){
     if(f == NULL)
         return ABRIR;
 
-    int qtd = fwrite(tarefas, TOTAL, sizeof(Tarefa), f);
-    if(qtd == 0)
+    int qtd = fwrite(tarefas, sizeof(Tarefa), *pos, f);
+    if(qtd != *pos)
         return ESCREVER;
 
-    qtd = fwrite(pos, 1, sizeof(int), f);
-    if(qtd == 0)
+    qtd = fwrite(pos, sizeof(int), 1, f);
+    if(qtd != 1)
         return ESCREVER;
 
     if(fclose(f))
@@ -131,11 +131,11 @@ ERROS carregar(Tarefa tarefas[], int *pos){
     if(f == NULL)
         return ABRIR;
 
-    int qtd = fread(tarefas, TOTAL, sizeof(Tarefa), f);
+    int qtd = fread(tarefas, sizeof(Tarefa), TOTAL, f);
     if(qtd == 0)
         return LER;
 
-    qtd = fread(pos, 1, sizeof(int), f);
+    qtd = fread(pos, sizeof(int), 1, f);
     if(qtd == 0)
         return LER;
 
@@ -146,7 +146,7 @@ ERROS carregar(Tarefa tarefas[], int *pos){
 
 }
 
-ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos) {
+ERROS exportar_tarefas_txt(Tarefa tarefas[], int *pos) {
     char nome_arquivo[50];
     char txt[] = ".txt";
     printf("Digite o nome do arquivo para exportar: ");

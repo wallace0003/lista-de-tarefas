@@ -19,7 +19,7 @@ ERROS salvar(Tarefa tarefas[], int *pos);
 ERROS carregar(Tarefa tarefas[], int *pos);
 
 
-ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos);
+ERROS exportar_tarefas_txt(Tarefa tarefas[], int *pos);
 
 
 

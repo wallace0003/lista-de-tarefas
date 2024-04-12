@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main(){
-    funcao fs[] = {criar, deletar, listar, salvar, carregar,exportar_tarefas_para_texto};
+    funcao fs[] = {criar, deletar, listar, exportar_tarefas_txt, salvar, carregar};
 
     Tarefa tarefas[TOTAL];
     int pos;
@@ -18,21 +18,23 @@ int main(){
         printf("2 - Deletar tarefa\n");
         printf("3 - Listar tarefas\n");
         printf("4 - Exportar tarefas para arquivo de texto\n");
+        printf("5 - Salvar tarefas em arquivo binário\n");
+        printf("6 - Carregar tarefas de arquivo binário\n");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
 
         scanf("%d", &opcao);
         opcao--;
-        if(opcao > 3)
+        if(opcao > 5)
             printf("Opcao invalida\n");
         else if(opcao >= 0) {
           if (opcao == 2) {
               fs[opcao](tarefas, &pos);
           } 
           else if(opcao == 3){
-              exportar_tarefas_para_texto(tarefas, &pos);
+              exportar_tarefas_txt(tarefas, &pos);
           }
-            
+        
           else {
               fs[opcao](tarefas, &pos);
           }
