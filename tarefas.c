@@ -124,7 +124,7 @@ ERROS salvar(Tarefa tarefas[], int *pos){
 
     if(fclose(f))
         return FECHAR;
-
+  printf("\nArquvo salvo com sucesso\n");
     return OK;
 }
 
@@ -144,6 +144,8 @@ ERROS carregar(Tarefa tarefas[], int *pos){
     if(fclose(f))
         return FECHAR;
 
+  printf("\nTarefa carregada com sucesso!\n");
+  
     return OK;
 
 }
