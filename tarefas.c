@@ -180,11 +180,11 @@ ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos) {
 int verificErros(ERROS *erro){
     switch (*erro){
         case MAX_TAREFA:
-            printf("\nNúmero máximo de tarefas alcançado.\n");
+            printf("\nNÃºmero mÃ¡ximo de tarefas alcanÃ§ado.\n");
             break;
         
         case SEM_TAREFAS:
-            printf("\nNão foram encontradas tarefas salvas.\n");
+            printf("\nNÃ£o foram encontradas tarefas salvas.\n");
             break;
 
         case NAO_ENCONTRADO:

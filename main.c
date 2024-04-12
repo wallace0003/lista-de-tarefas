@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include "tarefas.h"
 #include <string.h>
-// Biblioteca para arrumar a acentuação no VScode
-#include <locale.h>
 
 int main(){
-    // Padroniza a acentuação no vs code
-    setlocale(LC_ALL, "Portuguese_Brazil");
 
     funcao fs[] = {criar, deletar, listar, salvar, carregar, exportar_tarefas_para_texto};
 
