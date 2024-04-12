@@ -112,12 +112,12 @@ ERROS salvar(Tarefa tarefas[], int *pos){
     if(f == NULL)
         return ABRIR;
 
-    int qtd = fwrite(tarefas, sizeof(Tarefa), *pos, f);
-    if(qtd != *pos)
+    int qtd = fwrite(tarefas, TOTAL, sizeof(Tarefa), f);
+    if(qtd == 0)
         return ESCREVER;
 
-    qtd = fwrite(pos, sizeof(int), 1, f);
-    if(qtd != 1)
+    qtd = fwrite(pos, 1, sizeof(int), f);
+    if(qtd == 0)
         return ESCREVER;
 
     if(fclose(f))
@@ -131,11 +131,11 @@ ERROS carregar(Tarefa tarefas[], int *pos){
     if(f == NULL)
         return ABRIR;
 
-    int qtd = fread(tarefas, sizeof(Tarefa), TOTAL, f);
+    int qtd = fread(tarefas, TOTAL, sizeof(Tarefa), f);
     if(qtd == 0)
         return LER;
 
-    qtd = fread(pos, sizeof(int), 1, f);
+    qtd = fread(pos, 1, sizeof(int), f);
     if(qtd == 0)
         return LER;
 
