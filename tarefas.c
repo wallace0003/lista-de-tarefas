@@ -148,7 +148,7 @@ ERROS carregar(Tarefa tarefas[], int *pos){
 
 }
 
-ERROS exportar_tarefas_para_texto(Tarefa tarefas[], int *pos) {
+ERROS exportar_tarefas_txt(Tarefa tarefas[], int *pos) {
     char nome_arquivo[50];
     char txt[] = ".txt";
     printf("Digite o nome do arquivo para exportar: ");
