@@ -1,9 +1,14 @@
 #include <stdio.h>
 #include "tarefas.h"
 #include <string.h>
+// Biblioteca para arrumar a acentuação no VScode
+#include <locale.h>
 
 int main(){
-    funcao fs[] = {criar, deletar, listar, salvar, carregar,exportar_tarefas_para_texto};
+    // Padroniza a acentuação no vs code
+    setlocale(LC_ALL, "Portuguese_Brazil");
+
+    funcao fs[] = {criar, deletar, listar, salvar, carregar, exportar_tarefas_para_texto};
 
     Tarefa tarefas[TOTAL];
     int pos;
@@ -26,17 +31,20 @@ int main(){
         if(opcao > 3)
             printf("Opcao invalida\n");
         else if(opcao >= 0) {
-          if (opcao == 2) {
-              fs[opcao](tarefas, &pos);
-          } 
-          else if(opcao == 3){
-              exportar_tarefas_para_texto(tarefas, &pos);
-          }
-            
-          else {
-              fs[opcao](tarefas, &pos);
-          }
-        } else {
+            if (opcao == 2) {
+                erro = fs[opcao](tarefas, &pos);
+            } 
+            else if(opcao == 3){
+                erro = exportar_tarefas_para_texto(tarefas, &pos);
+            }
+            else {
+                erro = fs[opcao](tarefas, &pos);
+            }
+
+            if (erro != OK)
+                verificErros(&erro);
+        }
+        else {
             printf("Sair...\n");
         }
 
