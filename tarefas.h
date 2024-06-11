@@ -1,3 +1,6 @@
+#ifndef TAREFAS_H
+#define TAREFAS_H
+
 #define TOTAL 100
 #define T_Categoria 100
 #define T_Descricao 300
@@ -17,10 +20,10 @@ ERROS deletar(Tarefa tarefas[], int *pos);
 ERROS listar(Tarefa tarefas[], int *pos);
 ERROS salvar(Tarefa tarefas[], int *pos);
 ERROS carregar(Tarefa tarefas[], int *pos);
-
-
 ERROS exportar_tarefas_txt(Tarefa tarefas[], int *pos);
 
-int verificErros (ERROS *erro);
+int verificErros(ERROS erro);
 
 void clearBuffer();
+
+#endif
