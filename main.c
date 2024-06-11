@@ -3,13 +3,11 @@
 #include <string.h>
 
 int main(){
-
     funcao fs[] = {criar, deletar, listar, exportar_tarefas_txt, salvar, carregar};
-
 
     Tarefa tarefas[TOTAL];
     int pos;
-    ERROS erro = fs[4](tarefas, &pos);
+    ERROS erro = fs[5](tarefas, &pos); // Corrigir erro de carregar ao iniciar
     if(erro != OK)
         pos = 0;
 
@@ -27,15 +25,23 @@ int main(){
 
         scanf("%d", &opcao);
         opcao--;
-        if(opcao > 5)
+        if(opcao > 5 || opcao < -1)
             printf("Opcao invalida\n");
         else if(opcao >= 0) {
-            fs[opcao](tarefas, &pos);
-        }else {
+            erro = fs[opcao](tarefas, &pos);
+            if (erro != OK) {
+                verificErros(erro);
+            }
+        } else {
             printf("Sair...\n");
         }
 
     } while(opcao >= 0);
 
-    fs[4](tarefas, &pos);
+    erro = fs[4](tarefas, &pos); // Salvar ao sair
+    if (erro != OK) {
+        verificErros(erro);
+    }
+
+    return 0;
 }
