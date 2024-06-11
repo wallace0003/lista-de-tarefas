@@ -146,26 +146,51 @@ ERROS exportar_tarefas_txt(Tarefa tarefas[], int *pos) {
     fgets(nome_arquivo, 50, stdin);
 
     nome_arquivo[strcspn(nome_arquivo, "\n")] = '\0';
-
     strcat(nome_arquivo, txt);
 
     FILE *f = fopen(nome_arquivo, "w");
     if (f == NULL)
         return ABRIR;
 
-    for (int i = 0; i < *pos; i++) {
-        fprintf(f, "Prioridade: %d\n", tarefas[i].prioridade);
-        fprintf(f, "Categoria: %s\n", tarefas[i].categoria);
-        fprintf(f, "Descricao: %s\n", tarefas[i].descricao);
-        fprintf(f, "\n");
+    char categoria[100];
+    printf("Digite a categoria que deseja exportar (deixe em branco para exportar todas): ");
+    fgets(categoria, 100, stdin);
+    categoria[strcspn(categoria, "\n")] = '\0';
+
+    int encontrou = 0;
+    if (categoria[0] == '\0') {
+        for (int i = 0; i < *pos; i++) {
+            fprintf(f, "Prioridade: %d\n", tarefas[i].prioridade);
+            fprintf(f, "Categoria: %s\n", tarefas[i].categoria);
+            fprintf(f, "Descricao: %s\n", tarefas[i].descricao);
+            fprintf(f, "\n");
+        }
+        encontrou = 1;
+    } else {
+        for (int i = 0; i < *pos; i++) {
+            if (strcmp(categoria, tarefas[i].categoria) == 0) {
+                encontrou = 1;
+                fprintf(f, "Prioridade: %d\n", tarefas[i].prioridade);
+                fprintf(f, "Categoria: %s\n", tarefas[i].categoria);
+                fprintf(f, "Descricao: %s\n", tarefas[i].descricao);
+                fprintf(f, "\n");
+            }
+        }
+    }
+
+    if (!encontrou) {
+        printf("Nenhuma tarefa encontrada para a categoria \"%s\".\n", categoria);
     }
 
     if (fclose(f) != 0)
         return FECHAR;
-    printf("Arquivo exportado com sucesso!\n");
 
+    if (encontrou) {
+        printf("Arquivo exportado com sucesso!\n");
+    }
     return OK;
 }
+
 
 int verificErros(ERROS erro){
     switch (erro){
